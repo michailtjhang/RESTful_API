@@ -7,6 +7,42 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Instalasi
+- download zip <a href="https://github.com/khoirulhuda07/final_project_Msib5_Kelompok3/archive/refs/heads/master.zip">Klik disini</a> 
+- atau clone di terminal :
+    ```bash
+    git clone https://github.com/khoirulhuda07/final_project_Msib5_Kelompok3.git
+    ```
+
+## Setup
+- buka direktori project di terminal anda.
+- ketikan command di terminal :
+  ```bash
+  copy .env.example .env
+  ```
+  untuk Linuk, ketikan command :
+  ```bash
+  cp .env.example .env
+  ```
+- instal package-package di laravel, ketikan command :
+  ```bash
+  composer install
+  ```
+- Generate app key, ketikan command :
+  ```bash
+  php artisan key:generate
+  ```
+### Command Run Website
+- menjalanlan Laravel di website, ketikan command :
+  ```bash
+  php artisan serve
+  ```
+### Command Database
+- buatlah nama database baru. Lalu sesuaikan nama database, username, dan password database di file `.env`, ketikan command :
+  ```bash
+  php artisan migrate
+  ```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
