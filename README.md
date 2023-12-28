@@ -8,10 +8,10 @@
 </p>
 
 ## Instalasi
-- download zip <a href="https://github.com/khoirulhuda07/final_project_Msib5_Kelompok3/archive/refs/heads/master.zip">Klik disini</a> 
+- download zip <a href="https://github.com/michailtjhang/RESTful_API/archive/refs/heads/master.zip">Klik disini</a> 
 - atau clone di terminal :
     ```bash
-    git clone https://github.com/khoirulhuda07/final_project_Msib5_Kelompok3.git
+    git clone https://github.com/michailtjhang/RESTful_API.git
     ```
 
 ## Setup
