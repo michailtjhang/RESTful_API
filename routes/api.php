@@ -1,30 +1,19 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ProdukController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
-Route::middleware('auth:sanctum')->group(function(){
-    Route::get('/produk', [ProdukController::class, 'index']);
-    Route::get('/produk/{id}', [ProdukController::class, 'show']);
-    Route::post('/produk-create', [ProdukController::class, 'store']);
-    Route::post('/produk/{id}', [ProdukController::class, 'update']);
-    Route::delete('/produk/{id}', [ProdukController::class, 'destory']);
-});
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::get('/books', [BookController::class, 'index'])->middleware(['auth:sanctum']);
+Route::get('/books/{id}', [BookController::class, 'show'])->middleware(['auth:sanctum']);
+Route::post('/books', [BookController::class, 'store'])->middleware(['auth:sanctum']);
+Route::put('/books/{id}', [BookController::class, 'update'])->middleware(['auth:sanctum']);
+Route::delete('/books/{id}', [BookController::class, 'destroy'])->middleware(['auth:sanctum']);
+
+Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth:sanctum']);
+
 

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Session;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -33,38 +32,35 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string',
+            'password' => 'required',
         ]);
+        $user = User::where('email', $request->email)->first();
 
-        $user = User::where('email', $data['email'])->first();
-
-        if (!$user || !Hash::check($data['password'], $user->password)) {
-            return response()->json([
-                'message' => 'Email atau kata sandi salah',
-            ], 401);
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
         }
 
-        $token = $user->createToken('API Token')->plainTextToken;
+        $token = $user->createToken('token')->plainTextToken;
 
         return response()->json([
-            'token' => $token,
-        ], 200);
+            'code' => 200,
+            'status' => 'success',
+            'message' => 'login sukses',
+            'token' => $token
+        ]);
     }
 
     public function logout(Request $request)
     {
-        if (!auth()->check()) {
-            return response()->json([
-                'message' => 'Tidak ada pengguna yang terautentikasi.',
-            ], 401);
-        }
-    
-        Auth::logout();
-    
+        $request->user()->tokens()->delete();
+
         return response()->json([
-            'message' => 'Logout berhasil.',
-        ], 200);
+            'status' => 'success',
+            'message' => 'Logout sukses',
+        ]);
     }
 }

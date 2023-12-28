@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProdukResource extends JsonResource
+class BookResource extends JsonResource
 {
     public $status;
     public $message;
@@ -14,7 +14,6 @@ class ProdukResource extends JsonResource
         $this->status = $status;
         $this->message = $message;
     }
-
     /**
      * Transform the resource into an array.
      *
@@ -22,11 +21,15 @@ class ProdukResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // return parent::toArray($request);
-        return [
-            'success'=>$this->status,
-            'massege'=>$this->message,
-            'data'=>$this->resource
+
+        return 
+        [
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'title' => $this->title,
+            'author' => $this->author,
+            'pages' => $this->pages,
+            'description' => $this->description,
         ];
     }
 }
